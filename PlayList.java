@@ -159,6 +159,10 @@ class PlayList {
     /** Returns the title of the shortest track in this list. 
      *  If the list is empty, returns null. */
     public String titleOfShortestTrack() {
+		if (size == 0) {
+            return null;
+        }
+		
         return tracks[minIndex(0)].getTitle();
     }
 
@@ -167,8 +171,11 @@ class PlayList {
      *  rather than returning a new, sorted playlist, the method sorts
      *  the list on which it was called (this list). */
     public void sortedInPlace() {
-        // Uses the selection sort algorithm,  
-        // calling the minIndex method in each iteration.
-        //// replace this statement with your code
+            for (int i = 0; i < size - 1; i++) {
+            int minIndex = minIndex(i);
+            Track temp = tracks[i];
+            tracks[i] = tracks[minIndex];
+            tracks[minIndex] = temp;
+        }
     }
 }
